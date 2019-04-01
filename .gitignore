@@ -1,7 +1,9 @@
-<<<<<<< HEAD
 HELP.md
 /target/
 !.mvn/wrapper/maven-wrapper.jar
+
+# assembly directory
+assembly/*
 
 ### IntelliJ IDEA ###
 .idea

@@ -30,7 +30,7 @@ public class HashServiceImpl implements HashService {
         HashAndPhoneEntity entity = repository.getOneByPhone(request.getPhone());
 
         if (Objects.isNull(entity)) {
-            String hash = EncryptionUtils.encrypt(config.getHashAlgorithm(), request.getPhone(), config.getHashSalt());
+            String hash = EncryptionUtils.encrypt(config.getAlgorithm(), request.getPhone(), config.getSalt());
 
             entity = new HashAndPhoneEntity();
             entity.setHash(hash);

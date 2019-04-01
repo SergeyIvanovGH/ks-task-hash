@@ -7,22 +7,22 @@ import org.springframework.context.annotation.Configuration;
 @ConfigurationProperties(prefix = "hash")
 public class HashProperties {
 
-    private String hashAlgorithm;
-    private String hashSalt;
+    private String algorithm;
+    private String salt;
 
-    public String getHashAlgorithm() {
-        return hashAlgorithm;
+    public String getAlgorithm() {
+        return algorithm;
     }
 
-    public String getHashSalt() {
-        return hashSalt;
+    public void setAlgorithm(String algorithm) {
+        this.algorithm = algorithm;
     }
 
-    public void setHashAlgorithm(String hashAlgorithm) {
-        this.hashAlgorithm = hashAlgorithm;
+    public String getSalt() {
+        return salt;
     }
 
-    public void setHashSalt(String hashSalt) {
-        this.hashSalt = hashSalt;
+    public void setSalt(String salt) {
+        this.salt = salt;
     }
 }

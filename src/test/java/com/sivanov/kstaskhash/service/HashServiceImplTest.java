@@ -32,10 +32,10 @@ public class HashServiceImplTest {
 
     @Test
     public void getPhoneByHash() throws NoSuchAlgorithmException {
-        when(config.getHashAlgorithm()).thenReturn("SHA-256");
-        when(config.getHashSalt()).thenReturn("nosalt");
+        when(config.getAlgorithm()).thenReturn("SHA-256");
+        when(config.getSalt()).thenReturn("nosalt");
         final String phone = "0675204125";
-        final String hash = EncryptionUtils.encrypt(config.getHashAlgorithm(), phone, config.getHashSalt());
+        final String hash = EncryptionUtils.encrypt(config.getAlgorithm(), phone, config.getSalt());
 
         HashAndPhoneEntity entity = new HashAndPhoneEntity();
         entity.setHash(hash);
@@ -56,10 +56,10 @@ public class HashServiceImplTest {
 
     @Test
     public void getHashByPhone() throws NoSuchAlgorithmException {
-        when(config.getHashAlgorithm()).thenReturn("SHA-256");
-        when(config.getHashSalt()).thenReturn("nosalt");
+        when(config.getAlgorithm()).thenReturn("SHA-256");
+        when(config.getSalt()).thenReturn("nosalt");
         final String phone = "0675204125";
-        final String hash = EncryptionUtils.encrypt(config.getHashAlgorithm(), phone, config.getHashSalt());
+        final String hash = EncryptionUtils.encrypt(config.getAlgorithm(), phone, config.getSalt());
 
         HashAndPhoneEntity entity = new HashAndPhoneEntity();
         entity.setHash(hash);
