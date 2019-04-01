@@ -1,0 +1,16 @@
+version: "3.2"
+services:
+  db:
+    build: db
+    environment:
+      - POSTGRES_PASSWORD = example
+    ports:
+      - 5432:5432
+
+  app:
+    build: web
+    ports:
+      - 8081:8081
+    depends_on:
+      - db
+    working_dir: /app

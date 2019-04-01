@@ -9,10 +9,11 @@ public class HashAndPhoneEntity {
     @GeneratedValue(strategy= GenerationType.AUTO)
     private Long id;
 
-    private String phone;
-
     @Column(length = 10)
+    private String phone;
     private String hash;
+
+
 
 
     public Long getId() {

@@ -53,8 +53,8 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
                     <mainClass>com.sivanov.kstaskhash.KsTaskHashApplication</mainClass>
-                    <finalName>ks-task-hash</finalName>
-                    <outputDirectory>assembly</outputDirectory>
+                    <finalName>${project.artifactId}</finalName>
+                    <outputDirectory>docker/web/assembly</outputDirectory>
                 </configuration>
             </plugin>
 
@@ -70,7 +70,7 @@
                             <goal>copy-resources</goal>
                         </goals>
                         <configuration>
-                            <outputDirectory>${basedir}/assembly/config</outputDirectory>
+                            <outputDirectory>${basedir}/docker/web/assembly/config</outputDirectory>
                             <resources>
                                 <resource>
                                     <directory>${basedir}/config</directory>
