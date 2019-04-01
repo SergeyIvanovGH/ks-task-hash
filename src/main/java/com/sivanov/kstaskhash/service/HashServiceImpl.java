@@ -8,6 +8,8 @@ import com.sivanov.kstaskhash.entity.HashAndPhoneEntity;
 import com.sivanov.kstaskhash.exceptions.HashException;
 import com.sivanov.kstaskhash.repository.HashAndPhoneRepository;
 import com.sivanov.kstaskhash.util.EncryptionUtils;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Service;
 
 import java.security.NoSuchAlgorithmException;
@@ -18,6 +20,7 @@ public class HashServiceImpl implements HashService {
 
     private final HashProperties config;
     private final HashAndPhoneRepository repository;
+    private final static Logger LOGGER = LogManager.getLogger(HashServiceImpl.class);
 
     public HashServiceImpl(HashProperties config, HashAndPhoneRepository repository) {
         this.config = config;
@@ -26,10 +29,12 @@ public class HashServiceImpl implements HashService {
 
     @Override
     public ResponseData getHashByPhone(final GettingHashByPhoneRequest request) throws NoSuchAlgorithmException {
+        LOGGER.info("Getting hash by phone number {}", request.getPhone());
 
         HashAndPhoneEntity entity = repository.getOneByPhone(request.getPhone());
 
         if (Objects.isNull(entity)) {
+            LOGGER.info("Phone not found in DB, save new data ...");
             String hash = EncryptionUtils.encrypt(config.getAlgorithm(), request.getPhone(), config.getSalt());
 
             entity = new HashAndPhoneEntity();
@@ -44,9 +49,12 @@ public class HashServiceImpl implements HashService {
 
     @Override
     public ResponseData getPhoneByHash(final GettingPhoneByHashRequest request) {
+        LOGGER.info("Getting phone number by hash-code {}", request.getHash());
+
         HashAndPhoneEntity entity = repository.getOneByHash(request.getHash());
 
         if (Objects.isNull(entity)) {
+            LOGGER.info("!!!ERROR!!! Phone by hash not found in database");
             throw new HashException("Phone by hash not found in database");
         }
 
