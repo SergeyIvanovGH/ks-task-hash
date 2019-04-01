@@ -25,16 +25,4 @@ public class HashProperties {
     public void setHashSalt(String hashSalt) {
         this.hashSalt = hashSalt;
     }
-
-    /*
-    @Autowired
-    public void setHashAlgorithm(@Value("${hash.algorithm:SHA-1}") String hashAlgorithm) {
-        this.hashAlgorithm = hashAlgorithm;
-    }
-
-    @Autowired
-    public void setHashSalt(@Value("${hash.salt:nosalt}") String hashSalt) {
-        this.hashSalt = hashSalt;
-    }
-*/
 }
