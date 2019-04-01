@@ -1,27 +1,20 @@
 # ks-task-hash
 test task with SHA hash
 
-# Run server
-docker run --rm --name some-postgres -e POSTGRES_PASSWORD=example -d -p 5432:5432 postgres:9
+# Make jar
+mvn clean package
 
-# Connect to server as postgres user
-docker exec -it some-postgres psql --u postgres
+# Run containers with app and db (postgres)
+cd docker
+docker-compose up --build
 
-CREATE DATABASE kstaskhash;
-\q
+# REST-services. endpoints:
 
-# or
+- получение hash-значения по номеру телефона
+http://localhost:8081/data/hash?phone=0671234567
+в данном случае если в БД нет такого номера, то значение телефона и расчитанный hash добавляется в БД.
 
-docker exec -it some-postgres psql --u postgres -c "CREATE DATABASE kstaskhash"
+- получение номера телефона по hash-значению
+http://localhost:8081/data/phone?hash=419d80f88d2e1032a994290bc5b12fb746b41919
+в данном случае если в БД нет номера телефона с таким hash-значением, возвращается HTTP 500  
 
-
-# Stop container
-docker container stop some-postgres
-docker container prune
-
-
-# Build Spring Boot container
-docker build -f Dockerfile -t ks-task-hash .
-
-# Run spring boot container with link to Postgresql container
-docker run -p 8081:8081 --link some-postgres:postgres -d ks-task-hash
