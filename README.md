@@ -1,14 +1,14 @@
 # ks-task-hash
 test task with SHA hash
 
-# Make jar
+# Выполнить сборку пакета jar-файл
 mvn clean package
 
-# Run containers with app and db (postgres)
+# Собрать контейнеры и запустить приложение с БД (postgres)
 cd docker
 docker-compose up --build
 
-# Used basic authorization
+# Используется базовая аутентификация
 login = 'user'
 password = 'password'
 
@@ -28,8 +28,8 @@ http://localhost:8081/swagger-ui.html
 
 
 # Изменение настроек (алгоритма) шифрования
-в каталоге config/ необходимо внести изменение 
+в файл docker/web/assembly/config/hash.properties необходимо внести изменение 
 
 
-# После остановки контейнеров рекомендуется выполнить команду
+# После остановки контейнеров или если необходимо пересобрать контейнеры, рекомендуется выполнить команду
 docker container prune
